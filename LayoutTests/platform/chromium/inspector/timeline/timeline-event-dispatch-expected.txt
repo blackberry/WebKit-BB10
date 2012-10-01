@@ -1,0 +1,18 @@
+Tests the Timeline API instrumentation of a DOM Dispatch (mousedown)
+
+Test Mouse Target
+EventDispatch Properties:
+{
+    startTime : <number>
+    data : {
+        type : "mousedown"
+    }
+    children : <object>
+    endTime : <number>
+    type : "EventDispatch"
+    frameId : <string>
+    usedHeapSize : <number>
+    totalHeapSize : <number>
+    counters : <object>
+}
+

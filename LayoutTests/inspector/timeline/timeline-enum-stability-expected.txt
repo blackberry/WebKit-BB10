@@ -1,0 +1,39 @@
+Check to see that TimelineAgent record types are stable.
+
+Applications outside of WebKit depend on the stability of the mapping of these types to these specific values.
+
+{
+    Root : "Root"
+    Program : "Program"
+    EventDispatch : "EventDispatch"
+    BeginFrame : "BeginFrame"
+    ScheduleStyleRecalculation : "ScheduleStyleRecalculation"
+    RecalculateStyles : "RecalculateStyles"
+    InvalidateLayout : "InvalidateLayout"
+    Layout : "Layout"
+    Paint : "Paint"
+    CompositeLayers : "CompositeLayers"
+    ParseHTML : "ParseHTML"
+    TimerInstall : "TimerInstall"
+    TimerRemove : "TimerRemove"
+    TimerFire : "TimerFire"
+    XHRReadyStateChange : "XHRReadyStateChange"
+    XHRLoad : "XHRLoad"
+    EvaluateScript : "EvaluateScript"
+    MarkLoad : "MarkLoad"
+    MarkDOMContent : "MarkDOMContent"
+    TimeStamp : "TimeStamp"
+    Time : "Time"
+    TimeEnd : "TimeEnd"
+    ScheduleResourceRequest : "ScheduleResourceRequest"
+    ResourceSendRequest : "ResourceSendRequest"
+    ResourceReceiveResponse : "ResourceReceiveResponse"
+    ResourceReceivedData : "ResourceReceivedData"
+    ResourceFinish : "ResourceFinish"
+    FunctionCall : "FunctionCall"
+    GCEvent : "GCEvent"
+    RequestAnimationFrame : "RequestAnimationFrame"
+    CancelAnimationFrame : "CancelAnimationFrame"
+    FireAnimationFrame : "FireAnimationFrame"
+}
+

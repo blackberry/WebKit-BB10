@@ -1,0 +1,52 @@
+CONSOLE MESSAGE: line 7: Script evaluated
+Tests the Timeline API instrumentation of a network resource load
+
+Script resource loaded
+
+ResourceSendRequest Properties:
+{
+    startTime : <number>
+    stackTrace : <object>
+    data : {
+        requestId : <string>
+        url : <string>
+        requestMethod : "GET"
+    }
+    type : "ResourceSendRequest"
+    frameId : <string>
+    usedHeapSize : <number>
+    totalHeapSize : <number>
+    counters : <object>
+}
+
+ResourceReceiveResponse Properties:
+{
+    startTime : <number>
+    data : {
+        requestId : <string>
+        statusCode : 0
+        mimeType : <string>
+    }
+    children : <object>
+    endTime : <number>
+    type : "ResourceReceiveResponse"
+    frameId : <string>
+    usedHeapSize : <number>
+    totalHeapSize : <number>
+    counters : <object>
+}
+
+ResourceFinish Properties:
+{
+    startTime : <number>
+    data : {
+        requestId : <string>
+        didFail : false
+    }
+    type : "ResourceFinish"
+    frameId : <string>
+    usedHeapSize : <number>
+    totalHeapSize : <number>
+    counters : <object>
+}
+

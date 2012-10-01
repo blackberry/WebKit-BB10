@@ -1,0 +1,383 @@
+// These are the layout test expectations for Apple's Mac port of WebKit.
+//
+// See http://trac.webkit.org/wiki/TestExpectations for more information on this file.
+
+BUGWK76478 : compositing/iframes/repaint-after-losing-scrollbars.html = IMAGE
+BUGWK76489 : compositing/webgl/webgl-reflection.html = IMAGE
+
+// Needs ENABLE_SHADOW_DOM
+BUGWK76439 DEBUG : fast/dom/shadow/content-element-api.html = TEXT
+BUGWK76439 DEBUG : fast/dom/shadow/content-element-outside-shadow.html = TEXT
+
+// CSS Variables are not yet enabled.
+BUGWK85580 SKIP : fast/css/variables = PASS
+BUGWK85580 SKIP : inspector/styles/variables = PASS
+
+// UndoManager is not yet enabled.
+BUGWK87908 SKIP : editing/undomanager = PASS
+
+// CSS image-resolution is not yet enabled.
+BUGWK85262 SKIP : fast/css/image-resolution = PASS
+
+// CSS image-orientation is not yet enabled.
+BUGWK89052 SKIP : fast/css/image-orientation = PASS
+
+// Our slow tests, in alphabetical order.
+BUGWK57672 : http/tests/local/fileapi/send-sliced-dragged-file.html = TEXT PASS
+
+BUGWK57799 : storage/domstorage/localstorage/storagetracker/storage-tracker-4-create.html = TEXT PASS
+BUGWK57799 : storage/domstorage/localstorage/storagetracker/storage-tracker-5-delete-one.html = TEXT PASS
+
+// Flaky tests that appear to be fail depending on which earlier tests
+// run in the same process
+BUGWK57688 : fast/text/international/bidi-AN-after-empty-run.html = PASS TEXT
+BUGWK57688 : fast/text/international/bidi-CS-after-AN.html = PASS TEXT
+BUGWK57688 : fast/text/international/thai-line-breaks.html = PASS TEXT
+
+// Fails on WK1, but passes on WK2.  (No syntax available for this situation.)
+BUGWK58192 : plugins/npp-set-window-called-during-destruction.html = TEXT PASS
+
+// Flaky tests when run multi-process
+BUGWK58192 : fast/dom/frame-loading-via-document-write.html = TEXT PASS
+BUGWK58192 : http/tests/appcache/fail-on-update-2.html = TEXT PASS
+BUGWK58192 : http/tests/appcache/fail-on-update.html = TEXT PASS
+BUGWK58192 : http/tests/inspector/console-websocket-error.html = TEXT PASS
+BUGWK58192 : fast/canvas/webgl/gl-teximage.html = TEXT PASS
+BUGWK58192 : fast/frames/flattening/iframe-flattening-offscreen.html = TEXT PASS
+BUGWK58192 : svg/dom/SVGScriptElement/script-set-href.svg = TEXT PASS
+
+// Flakey cookies tests
+BUGWK73694 : http/tests/cookies/simple-cookies-expired.html = TEXT PASS
+BUGWK73695 : http/tests/cookies/simple-cookies-max-age.html = TEXT PASS
+
+BUGWK69999 RELEASE : http/tests/security/contentSecurityPolicy/media-src-allowed.html = TEXT PASS
+
+BUGWK73766 : css3/unicode-bidi-isolate-aharon-failing.html = IMAGE
+
+// Need rebaselining after 71244. Also needs rebaseline after 86441.
+BUGWK74432 : fast/borders/border-antialiasing.html = IMAGE
+
+
+
+// Rebaseline after bug 71705. All differences are due to the fact that table captions now
+// expand to the full width of the table.
+BUGWK74888 : tables/mozilla/bugs/bug1163-1.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug119786.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug1302.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug222846.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug29058-3.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug48028-1.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug48028-2.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug5838.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug6304.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug8381.html = TEXT
+BUGWK74888 : tables/mozilla/core/captions.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_layers-opacity.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_position-table.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table-cell.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table-column-group.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table-column.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table-row-group.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table-row.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/backgr_simple-table.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/table_frame_border.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/table_frame_box.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/table_rules_all.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/table_rules_none.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/tables_caption_align_bot.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/tables_caption_align_top.html = TEXT
+BUGWK74888 : tables/mozilla/marvin/x_caption_align_bottom.xml = TEXT
+BUGWK74888 : tables/mozilla/marvin/x_caption_align_top.xml = TEXT
+BUGWK74888 : tables/mozilla/marvin/x_caption_class.xml = TEXT
+BUGWK74888 : tables/mozilla/marvin/x_caption_id.xml = TEXT
+BUGWK74888 : tables/mozilla/marvin/x_caption_style.xml = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug10140.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug10216.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug104898.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug106966.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug14007-2.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug29058-2.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-11.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-12.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-13.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-14.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-16.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-17.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-3.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-4.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-5.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-6.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug3166-9.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/bugs/bug91057.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/core/captions1.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/core/captions2.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/core/captions3.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-cell.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-column-group.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-column.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-quirks.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-row-group.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table-row.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_border-table.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_fixed-bg.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_layers-hide.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_position-table-cell.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_position-table-column-group.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_position-table-column.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_position-table-row-group.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_position-table-row.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_frame_vsides.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_bottom.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_hidden.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_hidden_table.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_left.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_right.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_caption_top.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_dirty_reflow_row.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_dirty_reflow_tbody.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_cell.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_cell_sibling.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_row.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_row_sibling.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_table.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_table_caption.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_tbody.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_overflow_style_reflow_tbody_sibling.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_rules_cols.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_rules_rows.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/tables_caption_align_left.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/tables_caption_align_right.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/x_caption_align_left.xml = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/x_caption_align_right.xml = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/other/test4.html = TEXT
+BUGWK74888 : tables/mozilla/bugs/bug29157.html = TEXT
+BUGWK74888 : tables/mozilla/other/wa_table_thtd_rowspan.html = TEXT
+BUGWK74888 : tables/mozilla/other/wa_table_tr_align.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/backgr_layers-show.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_frame_lhs.html = TEXT
+BUGWK74888 : tables/mozilla_expected_failures/marvin/table_frame_rhs.html = TEXT
+BUGWK74888 : fast/css/bidi-override-in-anonymous-block.html = TEXT
+BUGWK74888 : fast/dom/HTMLTableElement/colSpan.html = TEXT
+BUGWK74888 : fast/dom/HTMLTableElement/createCaption.html = TEXT
+BUGWK74888 : fast/repaint/table-section-repaint.html = TEXT
+BUGWK74888 : fast/table/frame-and-rules.html = TEXT
+
+// Rebaseline required after bug 74874
+BUGWK74874 : fast/table/027.html = TEXT
+BUGWK74874 : fast/table/027-vertical.html = TEXT
+
+// Need rebaselining. Only TEXT is suppressed because that is all the buildbots check, however
+// images need to be rebaselined too.
+BUGWK69210 SKIP : fast/encoding/utf-16-big-endian.html = TEXT
+BUGWK69210 : fast/encoding/utf-16-little-endian.html = TEXT
+BUGWK69210 : fast/inline/continuation-outlines-with-layers-2.html = TEXT
+// https://bugs.webkit.org/show_bug.cgi?id=81276
+// Allowed to regress to fix a crash.
+BUGWK69210 SKIP : fast/inline/continuation-outlines-with-layers.html = TEXT
+BUGWK69210 : fast/repaint/transform-absolute-in-positioned-container.html = TEXT
+
+// Tiled-layer compositing tests are flakey.
+BUGWK82546 : compositing/tiling/crash-reparent-tiled-layer.html = PASS TEXT
+
+BUGWK84604 FUTURE : fast/js/global-constructors.html = TEXT
+
+// Requires rebaseline after bug 83978
+BUGWK83978 SKIP : tables/mozilla_expected_failures/collapsing_borders/bug41262-5.html = IMAGE+TEXT
+
+BUGWK84759 : ietestcenter/css3/multicolumn/column-containing-block-001.htm = IMAGE
+BUGWK84760 : ietestcenter/css3/multicolumn/column-containing-block-002.htm = IMAGE
+BUGWK84761 : ietestcenter/css3/multicolumn/column-filling-001.htm = IMAGE
+BUGWK84764 : ietestcenter/css3/multicolumn/column-width-applies-to-001.htm = IMAGE
+BUGWK84767 : ietestcenter/css3/multicolumn/column-width-applies-to-002.htm = IMAGE
+BUGWK84768 : ietestcenter/css3/multicolumn/column-width-applies-to-003.htm = IMAGE
+BUGWK84769 : ietestcenter/css3/multicolumn/column-width-applies-to-004.htm = IMAGE
+BUGWK84770 : ietestcenter/css3/multicolumn/column-width-applies-to-007.htm = IMAGE
+BUGWK84771 : ietestcenter/css3/multicolumn/column-width-applies-to-009.htm = IMAGE
+BUGWK84772 : ietestcenter/css3/multicolumn/column-width-applies-to-010.htm = IMAGE
+BUGWK84773 : ietestcenter/css3/multicolumn/column-width-applies-to-012.htm = IMAGE
+BUGWK84775 : ietestcenter/css3/multicolumn/column-width-applies-to-013.htm = IMAGE
+BUGWK84776 : ietestcenter/css3/multicolumn/column-width-applies-to-014.htm = IMAGE
+BUGWK84777 : ietestcenter/css3/multicolumn/column-width-applies-to-015.htm = IMAGE
+BUGWK84778 : ietestcenter/css3/multicolumn/column-width-negative-001.htm = IMAGE
+
+BUGWK60731 : ietestcenter/css3/grid/grid-column-001.htm = IMAGE
+BUGWK60731 : ietestcenter/css3/grid/grid-column-002.htm = IMAGE
+BUGWK60731 : ietestcenter/css3/grid/grid-column-003.htm = IMAGE
+BUGWK60731 : ietestcenter/css3/grid/grid-items-002.htm = IMAGE
+BUGWK60731 : ietestcenter/css3/grid/grid-items-003.htm = IMAGE
+
+BUGWK85401 : media/video-colorspace-yuv420.html = TEXT
+BUGWK85401 : media/video-colorspace-yuv422.html = TEXT
+
+BUGWK85404 : fast/loader/javascript-url-in-embed.html = TEXT PASS
+
+BUGWK85408 : svg/batik/text/longTextOnPath.svg = TEXT PASS
+
+// Need rebaseline after https://bugs.webkit.org/show_bug.cgi?id=89116
+BUGWK89116 : svg/W3C-SVG-1.1/filters-specular-01-f.svg = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-dom-in-attr.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-dom-specularConstant-attr.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-dom-specularExponent-attr.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-dom-suraceScale-attr.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-inherit-lighting-color-css-prop.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-lighting-color-css-prop.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-svgdom-in-prop.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-svgdom-specularConstant-prop.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-svgdom-specularExponent-prop.html = PASS IMAGE
+BUGWK89116 : svg/dynamic-updates/SVGFESpecularLightingElement-svgdom-suraceScale-prop.html = PASS IMAGE
+BUGWK89116 : svg/filters/feLighting-crash.svg = PASS IMAGE
+
+// Needs rebaseline after https://bugs.webkit.org/show_bug.cgi?id=79682
+BUGWK79682 : svg/repaint/text-mask-update.svg = MISSING IMAGE+TEXT IMAGE TEXT PASS
+
+// IETC flexbox failures
+BUGWK85211 : ietestcenter/css3/flexbox/flexbox-align-stretch-001.htm = IMAGE
+BUGWK85212 : ietestcenter/css3/flexbox/flexbox-layout-002.htm = IMAGE
+
+// Requires rebaseline after bug 85031
+BUGWK85565 : fast/block/float/016.html = IMAGE
+BUGWK85565 : fast/css/border-solid-single-edge-antialias.html = IMAGE
+
+// Interferes with the tests that should pass
+BUGWK85689 SKIP : fast/animation/request-animation-frame-disabled.html = TEXT
+
+// Need rebaseline after https://bugs.webkit.org/show_bug.cgi?id=6033
+BUGWK6033 : css3/filters/add-filter-rendering.html = PASS IMAGE
+BUGWK6033 : css3/filters/blur-filter-page-scroll-parents.html = PASS IMAGE
+BUGWK6033 : css3/filters/blur-filter-page-scroll.html = PASS IMAGE
+BUGWK6033 : css3/filters/crash-filter-change.html = PASS IMAGE
+BUGWK6033 : css3/filters/crash-hw-sw-switch.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/custom-filter-shader-cache.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/effect-color-check.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/effect-custom-combined-missing.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/effect-custom.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/effect-custom-parameters.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/filter-repaint-custom-clipped.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/filter-repaint-custom-rotated.html = PASS IMAGE
+BUGWK6033 : css3/filters/custom/filter-repaint-custom.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-blur.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-brightness-clamping.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-brightness.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-combined.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-contrast.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-drop-shadow.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-grayscale.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-hue-rotate.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-invert.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-opacity.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-reference-external.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-reference-hw.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-reference-ordering.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-reference.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-saturate.html = PASS IMAGE
+BUGWK6033 : css3/filters/effect-sepia.html = PASS IMAGE
+BUGWK6033 : css3/filters/filtered-inline.html = PASS IMAGE
+BUGWK6033 : css3/filters/multiple-filters-invalidation.html = PASS IMAGE
+BUGWK6033 : css3/filters/nested-filters.html = PASS IMAGE
+BUGWK6033 : css3/filters/regions-expanding.html = PASS IMAGE
+BUGWK6033 : css3/filters/simple-filter-rendering.html = PASS IMAGE
+BUGWK6033 : svg/filters/color-interpolation-filters.svg = PASS MISSING
+
+// Hits assert https://bugs.webkit.org/show_bug.cgi?id=86208
+BUGWK85308 SKIP : ietestcenter/css3/valuesandunits/units-000.htm = IMAGE
+BUGWK85310 : ietestcenter/css3/valuesandunits/units-010.htm = IMAGE
+
+// IETC namespace failures
+BUGWK86137 : ietestcenter/css3/namespaces/prefix-007.xml = IMAGE
+BUGWK86139 : ietestcenter/css3/namespaces/prefix-010.xml = IMAGE
+BUGWK86142 : ietestcenter/css3/namespaces/syntax-021.xml = IMAGE
+
+// Rebaseline required after https://bugs.webkit.org/show_bug.cgi?id=84167
+BUGWK84167 : editing/pasteboard/innerText-inline-table.html = TEXT
+BUGWK84167 : editing/selection/iframe.html = TEXT
+BUGWK84167 : editing/selection/inline-table.html = TEXT
+BUGWK84167 : editing/selection/table-caret-3.html = TEXT
+BUGWK84167 : fast/css-generated-content/inline-display-types.html = TEXT
+BUGWK84167 : fast/css-generated-content/nested-tables-with-before-after-content-crash.html = IMAGE+TEXT
+BUGWK84167 : fast/inline-block/001.html = TEXT
+BUGWK84167 : tables/mozilla/bugs/bug2479-2.html = TEXT
+
+// Flaky in transition test framework
+BUGWK90234 : css3/calc/transitions.html = PASS TEXT
+
+// Needs rebaseline after bug 86441
+BUGWK86441 : fast/multicol/shadow-breaking.html = IMAGE
+
+// Requires rebaseline after https://bugs.webkit.org/show_bug.cgi?id=85405
+BUGWK85405 : tables/mozilla/bugs/bug10296-1.html = TEXT
+
+// Safari needs to be fixed after bug 84195 updated the layout tests
+BUGWK85918 : compositing/backface-visibility/backface-visibility-3d.html = IMAGE
+BUGWK85918 : compositing/backface-visibility/backface-visibility-hierarchical-transform.html = IMAGE
+BUGWK85918 : compositing/backface-visibility/backface-visibility-non3d.html = IMAGE
+
+// Disable webaudio codec tests, including proprietary codecs.
+BUGWK88794 SKIP : webaudio/codec-tests = PASS
+
+BUGWK90007 : http/tests/security/mixedContent/insecure-audio-video-in-main-frame.html = TEXT
+
+// Require rebaseline after bug 88171
+BUGWK88171 : fast/block/float/independent-align-positioning.html = TEXT
+BUGWK88171 : fast/block/float/010.html = TEXT
+BUGWK88171 : css1/formatting_model/floating_elements.html = TEXT
+
+// Text Autosizing is not enabled.
+BUGWK84186 SKIP : fast/text-autosizing = PASS
+
+// Dialog element is not yet enabled.
+BUGWK84635 SKIP : fast/dom/HTMLDialogElement = TEXT
+
+// INPUT_TYPE_DATE is not enabled on the Mac
+BUGWK90987 : fast/forms/input-in-table-cell-no-value.html = IMAGE
+
+// Skip tests in fast/text/shaping
+BUGWK90951 SKIP : fast/text/shaping = PASS
+
+// [Mac] REGRESSION (r122494): Running platform/mac/plugins/root-object-premature-delete-crash.html results in a crash
+BUGWK91505 : platform/mac/plugins/root-object-premature-delete-crash.html = CRASH
+
+// [Mac] REGRESSION (r122651): fast/text/descent-clip-in-scaled-page.html fails
+BUGWK91552 : fast/text/descent-clip-in-scaled-page.html = IMAGE
+
+// Layout Test css3/filters/custom/custom-filter-animation.html is failing
+BUGWK84813 : css3/filters/custom/custom-filter-animation.html = TEXT
+// Needs rebaseline after https://bugs.webkit.org/show_bug.cig?id=91969
+BUGWK91969 : fast/dom/HTMLProgressElement/progress-bar-value-pseudo-element.html = TEXT
+BUGWK91969 : fast/dom/HTMLProgressElement/progress-writing-mode.html = TEXT
+BUGWK91969 : fast/dom/HTMLProgressElement/indeterminate-progress-001.html = TEXT
+
+// Needs new image to be checked in for all platforms.
+BUGWK93859 : compositing/video/video-controls-layer-creation.html = PASS FAIL
+
+// Require rebaseline after bug 93148
+BUGWK93148 : tables/mozilla_expected_failures/bugs/bug106966.html = TEXT
+BUGWK93148 : tables/mozilla_expected_failures/marvin/table_overflow_hidden_tbody.html = TEXT
+BUGWK93148 : tables/mozilla_expected_failures/marvin/table_overflow_hidden_tr.html = TEXT
+BUGWK93148 : fast/css/nested-layers-with-hover.html = TEXT
+
+BUGWK93247 DEBUG : fast/lists/list-marker-remove-crash.html = CRASH
+
+// REGRESSION (r124723-r124741): 5 inspector/debugger tests failing on Apple Lion Debug WK1 (Tests)
+BUGWK93387 :  inspector/debugger/script-formatter-breakpoints.html = TEXT
+BUGWK93387 :  inspector/debugger/pause-in-internal-script.html = TEXT
+BUGWK93387 :  inspector/debugger/watch-expressions-panel-switch.html = TEXT
+BUGWK93387 :  inspector/debugger/debugger-activation-crash2.html = TEXT
+BUGWK93387 :  inspector/debugger/debugger-set-breakpoint-regex.html = TEXT
+
+// (r124484) inspector/device-orientation-success.html failing on Mac ports
+BUGWK93552 : inspector/device-orientation-success.html = TEXT
+
+// (r125185) http/tests/images/jpg-img-partial-load.html timeout on Lion
+BUGWK93636 : http/tests/images/jpg-img-partial-load.html = TEXT
+
+// Relative units are not set when the canvas has no parent
+BUGWK93840 : canvas/philip/tests/2d.text.font.parse.size.percentage.html = TEXT
+BUGWK93840 : canvas/philip/tests/2d.text.font.parse.size.percentage.default.html = TEXT
+
+// Require rebaselining after  https://bugs.webkit.org/show_bug.cgi?id=89826
+BUGWK89826 : fast/css/word-space-extra.html = TEXT
+
+// Added by bug 89826 
+BUGWK94008 MAC : fast/css/word-spacing-characters.html = IMAGE 
+BUGWK94003 MAC : fast/css/word-spacing-characters-complex-text.html = IMAGE 

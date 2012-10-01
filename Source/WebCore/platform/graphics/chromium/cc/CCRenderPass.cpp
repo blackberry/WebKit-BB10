@@ -1,0 +1,121 @@
+/*
+ * Copyright (C) 2011 Google Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1.  Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ * 2.  Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY APPLE AND ITS CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL APPLE OR ITS CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "config.h"
+
+#include "cc/CCRenderPass.h"
+
+#include "cc/CCLayerImpl.h"
+#include "cc/CCMathUtil.h"
+#include "cc/CCOcclusionTracker.h"
+#include "cc/CCQuadCuller.h"
+#include "cc/CCSharedQuadState.h"
+#include "cc/CCSolidColorDrawQuad.h"
+
+using WebKit::WebTransformationMatrix;
+
+namespace WebCore {
+
+PassOwnPtr<CCRenderPass> CCRenderPass::create(CCRenderSurface* targetSurface, int id)
+{
+    return adoptPtr(new CCRenderPass(targetSurface, id));
+}
+
+CCRenderPass::CCRenderPass(CCRenderSurface* targetSurface, int id)
+    : m_id(id)
+    , m_targetSurface(targetSurface)
+    , m_framebufferOutputRect(targetSurface->contentRect())
+    , m_hasTransparentBackground(true)
+    , m_hasOcclusionFromOutsideTargetSurface(false)
+{
+    ASSERT(targetSurface);
+    ASSERT(id > 0);
+}
+
+void CCRenderPass::appendQuadsForLayer(CCLayerImpl* layer, CCOcclusionTrackerImpl* occlusionTracker, bool& hadMissingTiles)
+{
+    const bool forSurface = false;
+    CCQuadCuller quadCuller(m_quadList, layer, occlusionTracker, layer->hasDebugBorders(), forSurface);
+
+    OwnPtr<CCSharedQuadState> sharedQuadState = layer->createSharedQuadState(m_sharedQuadStateList.size());
+    layer->appendDebugBorderQuad(quadCuller, sharedQuadState.get());
+    layer->appendQuads(quadCuller, sharedQuadState.get(), hadMissingTiles);
+    m_sharedQuadStateList.append(sharedQuadState.release());
+
+    m_hasOcclusionFromOutsideTargetSurface |= quadCuller.hasOcclusionFromOutsideTargetSurface();
+}
+
+void CCRenderPass::appendQuadsForRenderSurfaceLayer(CCLayerImpl* layer, const CCRenderPass* contributingRenderPass, CCOcclusionTrackerImpl* occlusionTracker)
+{
+    // FIXME: render surface layers should be a CCLayerImpl-derived class and
+    // not be handled specially here.
+    const bool forSurface = true;
+    CCQuadCuller quadCuller(m_quadList, layer, occlusionTracker, layer->hasDebugBorders(), forSurface);
+
+    CCRenderSurface* surface = layer->renderSurface();
+
+    OwnPtr<CCSharedQuadState> sharedQuadState = surface->createSharedQuadState(m_sharedQuadStateList.size());
+    bool isReplica = false;
+    surface->appendQuads(quadCuller, sharedQuadState.get(), isReplica, contributingRenderPass->id());
+    m_sharedQuadStateList.append(sharedQuadState.release());
+
+    m_hasOcclusionFromOutsideTargetSurface |= quadCuller.hasOcclusionFromOutsideTargetSurface();
+
+    if (!layer->hasReplica())
+        return;
+
+    // Add replica after the surface so that it appears below the surface.
+    OwnPtr<CCSharedQuadState> replicaSharedQuadState = surface->createReplicaSharedQuadState(m_sharedQuadStateList.size());
+    isReplica = true;
+    surface->appendQuads(quadCuller, replicaSharedQuadState.get(), isReplica, contributingRenderPass->id());
+    m_sharedQuadStateList.append(replicaSharedQuadState.release());
+
+    m_hasOcclusionFromOutsideTargetSurface |= quadCuller.hasOcclusionFromOutsideTargetSurface();
+}
+
+void CCRenderPass::appendQuadsToFillScreen(CCLayerImpl* rootLayer, SkColor screenBackgroundColor, const CCOcclusionTrackerImpl& occlusionTracker)
+{
+    if (!rootLayer || !screenBackgroundColor)
+        return;
+
+    Region fillRegion = occlusionTracker.computeVisibleRegionInScreen();
+    if (fillRegion.isEmpty())
+        return;
+
+    // Manually create the quad state for the gutter quads, as the root layer
+    // doesn't have any bounds and so can't generate this itself.
+    OwnPtr<CCSharedQuadState> sharedQuadState = rootLayer->createSharedQuadState(m_sharedQuadStateList.size());
+    ASSERT(rootLayer->screenSpaceTransform().isInvertible());
+    WebTransformationMatrix transformToLayerSpace = rootLayer->screenSpaceTransform().inverse();
+    Vector<IntRect> fillRects = fillRegion.rects();
+    for (size_t i = 0; i < fillRects.size(); ++i) {
+        // The root layer transform is composed of translations and scales only, no perspective, so mapping is sufficient.
+        IntRect layerRect = CCMathUtil::mapClippedRect(transformToLayerSpace, fillRects[i]);
+        m_quadList.append(CCSolidColorDrawQuad::create(sharedQuadState.get(), layerRect, screenBackgroundColor));
+    }
+    m_sharedQuadStateList.append(sharedQuadState.release());
+}
+
+}

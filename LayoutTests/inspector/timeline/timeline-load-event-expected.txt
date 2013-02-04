@@ -1,0 +1,15 @@
+Tests the load event.
+
+Page reloaded.
+MarkLoad Properties:
+{
+    counters : <object>
+    data : {
+    }
+    frameId : <string>
+    startTime : <number>
+    totalHeapSize : <number>
+    type : "MarkLoad"
+    usedHeapSize : <number>
+}
+

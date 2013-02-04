@@ -1,0 +1,23 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x106
+  RenderBlock {HTML} at (0,0) size 800x106
+    RenderBody {BODY} at (8,13) size 784x80 [color=#000080]
+      RenderBlock {P} at (0,0) size 784x80
+        RenderText {#text} at (0,0) size 612x16
+          text run at (0,0) width 612: "This text should be 13px Helvetica in small-caps and italicized. There should be a small gap between each line. "
+        RenderInline {SPAN} at (0,0) size 775x80 [color=#C0C0C0]
+          RenderText {#text} at (611,0) size 775x80
+            text run at (611,0) width 164: "dummy text dummy text dummy"
+            text run at (0,16) width 193: "text dummy text dummy text dummy "
+            text run at (192,16) width 386: "text dummy text dummy text dummy text dummy text dummy text dummy "
+            text run at (577,16) width 191: "text dummy text dummy text dummy"
+            text run at (0,32) width 193: "text dummy text dummy text dummy "
+            text run at (192,32) width 386: "text dummy text dummy text dummy text dummy text dummy text dummy "
+            text run at (577,32) width 191: "text dummy text dummy text dummy"
+            text run at (0,48) width 193: "text dummy text dummy text dummy "
+            text run at (192,48) width 386: "text dummy text dummy text dummy text dummy text dummy text dummy "
+            text run at (577,48) width 191: "text dummy text dummy text dummy"
+            text run at (0,64) width 193: "text dummy text dummy text dummy "
+            text run at (192,64) width 345: "text dummy text dummy text dummy text dummy text dummy text"
+        RenderText {#text} at (0,0) size 0x0

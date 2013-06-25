@@ -1,0 +1,20 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 784x584
+      RenderText {#text} at (0,0) size 579x19
+        text run at (0,0) width 579: "This tests that background color and background images can be set on the new text fields. "
+      RenderBR {BR} at (578,15) size 1x0
+      RenderTextControl {INPUT} at (2,22) size 198x25 [bgcolor=#FFC0CB] [border: (2px inset #000000)]
+      RenderText {#text} at (202,25) size 4x19
+        text run at (202,25) width 4: " "
+      RenderBR {BR} at (206,40) size 0x0
+      RenderTextControl {INPUT} at (2,51) size 198x25 [bgcolor=#FFFFFF] [border: (2px inset #000000)]
+      RenderText {#text} at (0,0) size 0x0
+layer at (13,33) size 192x19
+  RenderBlock {DIV} at (3,3) size 192x19
+    RenderText {#text} at (0,0) size 129x19
+      text run at (0,0) width 129: "This should be pink."
+layer at (13,62) size 192x19
+  RenderBlock {DIV} at (3,3) size 192x19

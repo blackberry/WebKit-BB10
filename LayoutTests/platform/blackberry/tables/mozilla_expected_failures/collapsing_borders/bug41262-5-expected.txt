@@ -1,0 +1,83 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 784x576
+      RenderBlock {CENTER} at (0,0) size 784x162
+        RenderTable {TABLE} at (339,0) size 106x88
+          RenderTableSection {THEAD} at (0,0) size 106x22
+            RenderTableRow {TR} at (0,0) size 106x22
+              RenderTableCell {TD} at (0,0) size 35x22 [r=0 c=0 rs=1 cs=1]
+                RenderText {#text} at (1,1) size 29x19
+                  text run at (1,1) width 29: "EST"
+              RenderTableCell {TD} at (35,0) size 31x22 [border: none none none (1px solid #808080)] [r=0 c=1 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 28x19
+                  text run at (2,1) width 28: "1am"
+              RenderTableCell {TD} at (66,0) size 40x22 [border: none none none (1px solid #808080)] [r=0 c=2 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 29x19
+                  text run at (2,1) width 29: "8pm"
+          RenderTableSection {TBODY} at (0,22) size 106x44
+            RenderTableRow {TR} at (0,0) size 106x22
+              RenderTableCell {TD} at (0,0) size 35x22 [r=0 c=0 rs=1 cs=1]
+                RenderText {#text} at (1,1) size 30x19
+                  text run at (1,1) width 30: "CST"
+              RenderTableCell {TD} at (35,0) size 31x22 [border: none none none (1px solid #808080)] [r=0 c=1 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 28x19
+                  text run at (2,1) width 28: "2am"
+              RenderTableCell {TD} at (66,0) size 40x22 [border: none none none (1px solid #808080)] [r=0 c=2 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 29x19
+                  text run at (2,1) width 29: "9pm"
+            RenderTableRow {TR} at (0,22) size 106x22
+              RenderTableCell {TD} at (0,22) size 35x22 [r=1 c=0 rs=1 cs=1]
+                RenderText {#text} at (1,1) size 33x19
+                  text run at (1,1) width 33: "MST"
+              RenderTableCell {TD} at (35,22) size 31x22 [border: none none none (1px solid #808080)] [r=1 c=1 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 28x19
+                  text run at (2,1) width 28: "3am"
+              RenderTableCell {TD} at (66,22) size 40x22 [border: none none none (1px solid #808080)] [r=1 c=2 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 37x19
+                  text run at (2,1) width 37: "10pm"
+          RenderTableSection {TFOOT} at (0,66) size 106x22
+            RenderTableRow {TR} at (0,0) size 106x22
+              RenderTableCell {TD} at (0,0) size 35x22 [r=0 c=0 rs=1 cs=1]
+                RenderText {#text} at (1,1) size 28x19
+                  text run at (1,1) width 28: "PST"
+              RenderTableCell {TD} at (35,0) size 31x22 [border: none none none (1px solid #808080)] [r=0 c=1 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 28x19
+                  text run at (2,1) width 28: "4am"
+              RenderTableCell {TD} at (66,0) size 40x22 [border: none none none (1px solid #808080)] [r=0 c=2 rs=1 cs=1]
+                RenderText {#text} at (2,1) size 37x19
+                  text run at (2,1) width 37: "11pm"
+        RenderBlock {P} at (0,104) size 784x58
+          RenderButton {BUTTON} at (243,2) size 89x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 73x19
+              RenderText {#text} at (0,0) size 73x19
+                text run at (0,0) width 22: "No "
+                text run at (21,0) width 52: "borders"
+          RenderButton {BUTTON} at (336,2) size 115x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 99x19
+              RenderText {#text} at (0,0) size 99x19
+                text run at (0,0) width 55: "Exterior "
+                text run at (54,0) width 45: "border"
+          RenderButton {BUTTON} at (455,2) size 87x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 71x19
+              RenderText {#text} at (0,0) size 71x19
+                text run at (0,0) width 20: "All "
+                text run at (19,0) width 52: "borders"
+          RenderBR {BR} at (543,20) size 1x0
+          RenderButton {BUTTON} at (201,31) size 122x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 106x19
+              RenderText {#text} at (0,0) size 106x19
+                text run at (0,0) width 55: "Column "
+                text run at (54,0) width 52: "borders"
+          RenderButton {BUTTON} at (327,31) size 119x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 103x19
+              RenderText {#text} at (0,0) size 103x19
+                text run at (0,0) width 52: "Groups "
+                text run at (51,0) width 52: "borders"
+          RenderButton {BUTTON} at (450,31) size 134x25 [bgcolor=#C0C0C0] [border: (2px outset #C0C0C0)]
+            RenderBlock (anonymous) at (8,3) size 118x19
+              RenderText {#text} at (0,0) size 118x19
+                text run at (0,0) width 39: "Table "
+                text run at (38,0) width 80: "row borders"
+          RenderText {#text} at (0,0) size 0x0

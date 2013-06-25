@@ -1,0 +1,40 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 784x584
+      RenderText {#text} at (0,0) size 378x19
+        text run at (0,0) width 378: "This tests that aqua-style search fields do not honor height."
+      RenderBR {BR} at (377,15) size 1x0
+      RenderTextControl {INPUT} at (0,124) size 71x6 [bgcolor=#FFFFFF] [border: (2px inset #000000)]
+        RenderDeprecatedFlexibleBox {DIV} at (3,0) size 65x6
+          RenderBlock {DIV} at (0,3) size 0x0
+          RenderBlock {DIV} at (0,2) size 57x2
+          RenderBlock {DIV} at (57,0) size 8x8
+      RenderText {#text} at (71,115) size 4x19
+        text run at (71,115) width 4: " "
+      RenderTextControl {INPUT} at (77,105) size 178x40 [bgcolor=#FFFFFF] [border: (2px inset #000000)]
+        RenderDeprecatedFlexibleBox {DIV} at (3,3) size 172x34
+          RenderBlock {DIV} at (0,17) size 0x0
+          RenderBlock {DIV} at (0,8) size 152x18
+          RenderBlock {DIV} at (152,7) size 20x20
+      RenderText {#text} at (257,115) size 4x19
+        text run at (257,115) width 4: " "
+      RenderTextControl {INPUT} at (263,20) size 308x200 [bgcolor=#FFFFFF] [border: (2px inset #000000)]
+        RenderDeprecatedFlexibleBox {DIV} at (3,4) size 302x192
+          RenderBlock {DIV} at (0,96) size 0x0
+          RenderBlock {DIV} at (0,80) size 267x32
+          RenderBlock {DIV} at (267,78) size 35x35
+      RenderText {#text} at (0,0) size 0x0
+layer at (11,134) size 57x2 scrollHeight 7
+  RenderBlock {DIV} at (0,0) size 57x2
+    RenderText {#text} at (0,0) size 11x7
+      text run at (0,0) width 11: "mini"
+layer at (88,124) size 152x18
+  RenderBlock {DIV} at (0,0) size 152x18
+    RenderText {#text} at (0,0) size 33x18
+      text run at (0,0) width 33: "small"
+layer at (274,112) size 267x32
+  RenderBlock {DIV} at (0,0) size 267x32
+    RenderText {#text} at (0,0) size 80x32
+      text run at (0,0) width 80: "regular"

@@ -1,0 +1,54 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x160
+  RenderBlock {HTML} at (0,0) size 800x160
+    RenderBody {BODY} at (8,16) size 784x128 [color=#000080]
+      RenderBlock {P} at (0,0) size 784x20
+        RenderText {#text} at (0,0) size 230x19
+          text run at (0,0) width 230: "This should be blue and underlined."
+      RenderBlock {P} at (0,36) size 784x20
+        RenderText {#text} at (0,0) size 299x19
+          text run at (0,0) width 299: "This sentence should be underlined, including "
+        RenderInline {CODE} at (0,0) size 73x16
+          RenderText {#text} at (298,3) size 73x16
+            text run at (298,3) width 73: "this part"
+        RenderText {#text} at (370,0) size 9x19
+          text run at (370,0) width 9: ", "
+        RenderInline {CITE} at (0,0) size 55x19
+          RenderText {#text} at (378,0) size 55x19
+            text run at (378,0) width 55: "this part"
+        RenderText {#text} at (432,0) size 9x19
+          text run at (432,0) width 9: ", "
+        RenderInline {EM} at (0,0) size 54x19
+          RenderText {#text} at (440,0) size 54x19
+            text run at (440,0) width 54: "this part"
+        RenderText {#text} at (493,0) size 37x19
+          text run at (493,0) width 9: ", "
+          text run at (501,0) width 29: "and "
+        RenderInline {STRONG} at (0,0) size 59x19
+          RenderText {#text} at (529,0) size 59x19
+            text run at (529,0) width 59: "this part"
+        RenderText {#text} at (587,0) size 5x19
+          text run at (587,0) width 5: "."
+      RenderBlock {P} at (0,72) size 784x20
+        RenderText {#text} at (0,0) size 379x19
+          text run at (0,0) width 283: "This sentence should also be underlined, as "
+          text run at (282,0) width 97: "well as italics, "
+        RenderInline {STRONG} at (0,0) size 123x19
+          RenderText {#text} at (378,0) size 123x19
+            text run at (378,0) width 123: "including this part"
+        RenderText {#text} at (500,0) size 5x19
+          text run at (500,0) width 5: "."
+      RenderBlock {P} at (0,108) size 784x20
+        RenderText {#text} at (0,0) size 343x19
+          text run at (0,0) width 343: "This sentence should be blue but not underlined, like "
+        RenderInline {STRONG} at (0,0) size 59x19
+          RenderText {#text} at (342,0) size 59x19
+            text run at (342,0) width 59: "this part"
+        RenderText {#text} at (400,0) size 34x19
+          text run at (400,0) width 34: ", but "
+        RenderInline {EM} at (0,0) size 194x19
+          RenderText {#text} at (433,0) size 194x19
+            text run at (433,0) width 194: "this part should be underlined"
+        RenderText {#text} at (626,0) size 5x19
+          text run at (626,0) width 5: "."

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Touch Adjustment : HTML Label and form fields - bug 78801</title>
+    <script src="../fast/js/resources/js-test-pre.js"></script>
+    <script src="resources/touchadjustment.js"></script>
+    <style>
+        #sandbox {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id=sandbox>
+    <a href="#myform" id="mylink">Do not click here</a><br>
+    <form id="myform">
+    <label for="myinput" id="mylabel">Click here,</label>
+    <span id="myspan">but not here.</span>
+    <input type="text" id="myinput" value="To focus this."></input>
+    </form>
+</div>
+
+<p id='description'></p>
+<div id='console'></div>
+
+<script>
+    var element;
+    var adjustedNode;
+    // Set up shortcut access to elements
+    var e = {};
+    ['sandbox', 'mylink', 'myform', 'myinput', 'mylabel', 'myspan'].forEach(function(a) {
+        e[a] = document.getElementById(a);
+    });
+
+    function testDirectTouch(element)
+    {
+        var touchpoint = offsetTouchPoint(findAbsoluteBounds(element), 'center', 0, 20, 30);
+        testTouchPoint(touchpoint, element);
+    }
+
+    function testIndirectTouch(element)
+    {
+        // Touch just right of the element.
+        var touchpoint = offsetTouchPoint(findAbsoluteBounds(element), 'right', 10, 30, 20);
+        testTouchPoint(touchpoint, element);
+    }
+
+    function testDirectTouches()
+    {
+        debug('Testing small direct hits.');
+
+        testDirectTouch(e.mylink);
+        testDirectTouch(e.mylabel);
+        testDirectTouch(e.myinput);
+    }
+
+    function testIndirectTouches()
+    {
+        debug('Testing indirect hits.');
+
+        testIndirectTouch(e.mylink);
+        testIndirectTouch(e.mylabel);
+        testIndirectTouch(e.myinput);
+    }
+
+    function runTests()
+    {
+        if (window.testRunner && window.internals && internals.touchNodeAdjustedToBestClickableNode) {
+            description('Tests if labels are treated as clickable if the input they control is.');
+            testDirectTouches();
+            testIndirectTouches();
+            e.sandbox.style.display = 'none';
+        }
+    }
+    runTests();
+</script>
+<script src="../fast/js/resources/js-test-post.js"></script>
+</body>
+</html>

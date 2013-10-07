@@ -1,0 +1,12 @@
+<script>
+internals.settings.setCSSVariablesEnabled(true);
+</script>
+<style>
+div {
+    -webkit-var-a: 10px solid green;
+    border: 10px -webkit-var(a) blue;
+}
+</style>
+<div>
+This text should not be surrounded by a border.
+</div>

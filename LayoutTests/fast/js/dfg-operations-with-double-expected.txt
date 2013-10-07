@@ -1,0 +1,12 @@
+Tests that DFG operations with floating-point arguments don't crash as in bug 115585.
+
+On success, you will see a series of "PASS" messages, followed by "TEST COMPLETE".
+
+
+PASS testArrayFunc(arrayPush, 1.25) is 250
+PASS testArrayFunc(arrayPushBeyondBounds, 1.25) is 250
+PASS testArrayFunc(arrayPushBeyondBoundsStrict, 1.25) is 250
+PASS successfullyParsed is true
+
+TEST COMPLETE
+

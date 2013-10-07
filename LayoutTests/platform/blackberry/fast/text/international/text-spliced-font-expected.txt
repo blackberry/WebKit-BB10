@@ -1,0 +1,44 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x497
+  RenderBlock {HTML} at (0,0) size 800x497
+    RenderBody {BODY} at (8,16) size 784x473
+      RenderBlock {P} at (0,0) size 784x18
+        RenderText {#text} at (0,0) size 114x17
+          text run at (0,0) width 114: "Simple text path: "
+        RenderInline {SPAN} at (0,0) size 149x17
+          RenderText {#text} at (113,0) size 149x17
+            text run at (113,0) width 149: "string\x{300C}\x{3042}\x{3001}\x{5909}\x{3063}\x{FF01}\x{300D}\x{3002}"
+      RenderBlock (anonymous) at (0,34) size 784x190
+        RenderBlock {SPAN} at (0,0) size 18x149
+          RenderText {#text} at (0,0) size 17x149
+            text run at (0,0) width 149: "string\x{300C}\x{3042}\x{3001}\x{5909}\x{3063}\x{FF01}\x{300D}\x{3002}"
+        RenderBR {BR} at (18,136) size 0x17
+        RenderInline {SPAN} at (0,0) size 196x17
+          RenderText {#text} at (0,154) size 196x17
+            text run at (0,154) width 196: "\x{90CA}\x{5916}\x{306E}\x{304E}\x{3089}\x{304E}\x{3089}\x{3072}\x{304B}\x{308B}\x{8349}\x{306E}\x{6CE2}\x{3002}"
+        RenderBR {BR} at (196,154) size 0x17
+        RenderInline {SPAN} at (0,0) size 314x17
+          RenderText {#text} at (0,172) size 314x17
+            text run at (0,172) width 314: "ABCDEFGHIJKLM abcdefghijklm 1234567890"
+        RenderBR {BR} at (313,172) size 1x17
+      RenderBlock {HR} at (0,232) size 784x2 [border: (1px inset #000000)]
+      RenderBlock {P} at (0,250) size 784x18
+        RenderText {#text} at (0,0) size 127x17
+          text run at (0,0) width 127: "Complex text path: "
+        RenderInline {SPAN} at (0,0) size 149x17
+          RenderText {#text} at (126,0) size 149x17
+            text run at (126,0) width 149: "string\x{300C}\x{3042}\x{3001}\x{5909}\x{3063}\x{FF01}\x{300D}\x{3002}"
+      RenderBlock (anonymous) at (0,284) size 784x189
+        RenderBlock {SPAN} at (0,0) size 18x148
+          RenderText {#text} at (0,0) size 17x148
+            text run at (0,0) width 148: "string\x{300C}\x{3042}\x{3001}\x{5909}\x{3063}\x{FF01}\x{300D}\x{3002}"
+        RenderBR {BR} at (18,135) size 0x17
+        RenderInline {SPAN} at (0,0) size 196x17
+          RenderText {#text} at (0,153) size 196x17
+            text run at (0,153) width 196: "\x{90CA}\x{5916}\x{306E}\x{304E}\x{3089}\x{304E}\x{3089}\x{3072}\x{304B}\x{308B}\x{8349}\x{306E}\x{6CE2}\x{3002}"
+        RenderBR {BR} at (196,153) size 0x17
+        RenderInline {SPAN} at (0,0) size 313x17
+          RenderText {#text} at (0,171) size 313x17
+            text run at (0,171) width 313: "ABCDEFGHIJKLM abcdefghijklm 1234567890"
+        RenderBR {BR} at (313,171) size 0x17

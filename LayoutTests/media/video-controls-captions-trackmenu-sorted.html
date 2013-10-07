@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testing that the list of tracks is sorted</title>
+        <script src="media-controls.js"></script>
+        <script src="media-file.js"></script>
+        <script src="video-test.js"></script>
+        <script src="trackmenu-test.js"></script>
+        <script>
+            if (window.testRunner)
+                testRunner.dumpAsText();
+
+            function testSortedMenu()
+            {
+                var trackListElement = getTrackListElement();
+                if (!trackListElement)
+                    return;
+                var trackListSection = trackListElement.querySelector("ul");
+                if (!trackListSection) {
+                    failTest("There should be a ul element in track list menu");
+                    return;
+                }
+                var lastTrackLabel = null;
+                var trackListItems = trackListSection.querySelectorAll("li");
+                if (!trackListItems || trackListItems.length != 7) {
+                    failTest("There should be seven li elements in the menu");
+                    return;
+                }
+                for (var j = 0; j < trackListItems.length; j++) {
+                    var item = trackListItems[j];
+                    if (j == 0)
+                        logResult(item.textContent == "Off", "First item should be labelled off");
+                    else {
+                        if (lastTrackLabel)
+                            logResult(item.textContent > lastTrackLabel, lastTrackLabel + " comes before " + item.textContent);
+                        else
+                            logResult(true, item.textContent + " is the first real item in the list");
+                        lastTrackLabel = item.textContent;
+                    }
+                }
+                endTest();
+            }
+
+            function start()
+            {
+                findMediaElement();
+                video.src = findMediaFile('video', 'content/test');
+                waitForEvent('canplaythrough', function () { startTrackMenuTest(testSortedMenu); });
+            }
+        </script>
+    </head>
+
+    <body onload="start()">
+        <p>Test that captions and subtitles are sorted in the menu.</p>
+        <video width="500" height="300" controls>
+            <track label="c" kind="captions" src="track/captions-webvtt/captions-fast.vtt" srclang="ja">
+            <track label="b" kind="captions" src="track/captions-webvtt/captions-fast.vtt" srclang="en-au">
+            <track label="a" kind="captions" src="track/captions-webvtt/captions-fast.vtt" srclang="en">
+            <track label="b" kind="subtitles" src="track/captions-webvtt/captions-fast.vtt" srclang="ja">
+            <track label="a" kind="subtitles" src="track/captions-webvtt/captions-fast.vtt" srclang="en-au">
+            <track label="c" kind="subtitles" src="track/captions-webvtt/captions-fast.vtt" srclang="en">
+        </video>
+    </body>
+</html>
+

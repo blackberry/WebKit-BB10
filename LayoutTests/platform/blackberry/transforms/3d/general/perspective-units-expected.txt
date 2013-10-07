@@ -1,0 +1,33 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x579
+  RenderBlock {HTML} at (0,0) size 800x579
+    RenderBody {BODY} at (8,16) size 784x555
+      RenderBlock {P} at (0,0) size 784x19
+        RenderText {#text} at (0,0) size 509x19
+          text run at (0,0) width 509: "-webkit-perspective should take units. All four should look qualitatively similar."
+      RenderBlock (anonymous) at (0,35) size 784x520
+        RenderText {#text} at (242,157) size 3x19
+          text run at (242,157) width 3: " "
+        RenderText {#text} at (486,157) size 4x19
+          text run at (486,157) width 4: " "
+        RenderText {#text} at (731,157) size 4x19
+          text run at (731,157) width 4: " "
+        RenderBR {BR} at (0,0) size 0x0
+        RenderText {#text} at (0,0) size 0x0
+layer at (28,61) size 202x152
+  RenderBlock {DIV} at (20,10) size 202x152 [border: (1px solid #000000)]
+layer at (29,62) size 200x150
+  RenderBlock {DIV} at (1,1) size 200x150 [bgcolor=#0000FF]
+layer at (273,61) size 202x152
+  RenderBlock {DIV} at (265,10) size 202x152 [border: (1px solid #000000)]
+layer at (274,62) size 200x150
+  RenderBlock {DIV} at (1,1) size 200x150 [bgcolor=#0000FF]
+layer at (518,61) size 202x152
+  RenderBlock {DIV} at (510,10) size 202x152 [border: (1px solid #000000)]
+layer at (519,62) size 200x150
+  RenderBlock {DIV} at (1,1) size 200x150 [bgcolor=#0000FF]
+layer at (48,247) size 404x304
+  RenderBlock {DIV} at (40,196) size 404x304 [border: (2px solid #000000)]
+layer at (50,249) size 400x300
+  RenderBlock {DIV} at (2,2) size 400x300 [bgcolor=#0000FF]

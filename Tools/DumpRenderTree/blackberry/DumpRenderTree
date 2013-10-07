@@ -1,0 +1,336 @@
+#!/usr/bin/perl
+
+# Small perl script to simulate the interactive output of DumpRenderTree by using
+# pre-generated results files
+
+use strict;
+use warnings;
+
+use Cwd;
+use Expect;
+use File::Basename;
+use File::Spec;
+use File::Path;
+use Getopt::Long;
+use IPC::Open2;
+use POSIX;
+use feature qw(switch);
+# Simulating boolean type
+use constant {
+    false => 0,
+    true => 1
+};
+# Simulating enum type
+use constant {
+    NotRunning => 0,
+    PrepareToRun => 1, # time to get pid
+    Executing => 2,
+    PrepareToExit => 3, # after sending #DONE
+    Exiting =>4 # after sending slay -f $process_id
+};
+
+sub copyLayouttests($@);
+sub dumpTests();
+sub getResults();
+sub startListening();
+
+my $wrapper = '';
+my $dump = 0;
+my $getResults = 0;
+my $layoutSource;
+my @layoutDestinations;
+my @tests;
+my $timeoutSeconds = 35;
+my $pixelTests = 0;
+my $debug = 0;
+my $deviceCount = 0;
+
+my $programName = basename($0);
+my $usage = <<EOF;
+Usage: $programName [options]
+EOF
+
+
+my $getOptionsResult = GetOptions(
+    'wrapper=s' => \$wrapper,
+    'dump' => \$dump,
+    'get-results' => \$getResults,
+    'device-count=i' => \$deviceCount,
+    'layout-source=s' => \$layoutSource,
+    'timeout=i' => \$timeoutSeconds,
+    'pixel-tests' => \$pixelTests,
+    'debug' => \$debug,
+);
+
+if (!$getOptionsResult) {
+    print STDERR $usage;
+    exit 1;
+}
+
+#
+# Sometimes, We want wrap too manay paramets
+# eg:
+#   valgrind --log-file=/tmp/valgrind.log --time-stamp=yes
+# We can do as bellow
+#   --wrapper=valgrind\\t--log-file=/tmp/valgrind.log\\t--time-stamp=yes
+#
+$wrapper =~ s/\\t/ /g;
+my $RICHMOND_ROOT = $ENV{'RICHMOND_ROOT'};
+my $MOUNT_POINT = $ENV{'MOUNT_POINT'};
+my $logFile = "$RICHMOND_ROOT/DumpRenderTree.log";
+
+$|++;
+
+if ($dump) {
+    exit dumpTests();
+}
+
+startListening();
+
+exit;
+
+sub dumpTests() {
+    # Delete log file
+    unlink $logFile;
+
+    # Read from tmp file
+    open(FILE, $ARGV[0]) or die("Unable to open file");
+    @tests = <FILE>;
+    close(FILE);
+
+    my $index_file = "$MOUNT_POINT" . "0/index.drt";
+
+    # Populate the index.drt
+    print "INFO: Creating index.drt...\n";
+    open INDEX, ">$index_file" or die "Failed to open file '$index_file': $!";
+    foreach (@tests) {
+        print INDEX $_;
+    }
+    close INDEX;
+
+    # get a list of test directories
+    print "INFO: Creating results/ skeleton structure...\n";
+    my $firstResult = "$MOUNT_POINT" . "0/results";
+    mkpath $firstResult;
+    my $layoutDestination = "$MOUNT_POINT" . "0/LayoutTests";
+    my @testDirectories;
+    foreach (@tests) {
+        my $directoryName = (fileparse($_))[1];
+        if (! grep(/^\Q$directoryName\E$/, @testDirectories)) {
+            # Do the following only if the directory is not already in the list
+            # Ensure directory skeletons exist for all tests
+            mkpath "$firstResult/$directoryName";
+            # Push this directory to copy list if it does not exist or the file doesn't exist
+            # and file count < 5, this is useful for copying new created tests to the device.
+            chomp;
+            if (! -d "$layoutDestination/$directoryName" || @tests < 5 && ! -f "$layoutDestination/$_") {
+                push @testDirectories, $directoryName;
+            }
+            # Tests in platform/blackberry/media directory reference resources in media directory.
+            if (grep(/^\Qplatform\/blackberry\/media\E/, $directoryName) && ! -d "$layoutDestination/media") {
+                push @testDirectories, "media";
+            }
+        }
+    }
+
+    # Populate file directories
+    for (my $i = 0; $i < $deviceCount; $i++) {
+        my $mountPoint = "$MOUNT_POINT$i";
+        push @layoutDestinations, "$mountPoint/LayoutTests";
+
+        # Duplicates directory skeletons to all devices
+        if ($i > 0) {
+            system "cp -R \"$firstResult\" \"$mountPoint\"";
+        }
+     }
+
+    # Ensure LayoutTests exist for all tests
+    # Device needs a copy of the LayoutTests
+    print "INFO: Creating results/ directory structure...\n";
+    copyLayouttests($layoutSource, @testDirectories);
+
+    return 0;
+}
+
+# Copy LayoutTests to device (requires actual copy)
+sub copyLayouttests($@)
+{
+    my ($source, @testDirectories) = @_;
+    foreach (@testDirectories) {
+        # If this is a specific test or subtest such as css1/basic,
+        # we need to copy all of css1/ directory.
+        # There may also be inter-subtest relations which are not available.
+        my $dir =~ s/\/$//;
+        my @parts = split('/', $dir);
+        my $parentDir = "";
+        $dir = dirname($dir) if @parts > 1;
+        # rsync to the parent folder in the destination
+        $parentDir = dirname($dir) . "/" if @parts > 2;
+
+        foreach (@layoutDestinations) {
+            print "INFO: Syncing [$dir] to [$_]...\n";
+            mkpath "$_/$parentDir";
+            my $copyCommand = (-d "$_/$dir") ? "rsync -acv" : "cp -R";
+            system "$copyCommand \"$source/$dir\" \"$_/$parentDir\" >/dev/null";
+        }
+    }
+}
+
+sub Log($) {
+    my ($text) = @_;
+    open LOG, ">>$logFile";
+    # Log format:
+    # [time] [worker number] message"
+    print LOG strftime("[%H:%M:%S]", localtime(time)) . "[$ENV{'WORKER_NUMBER'}] $text\n";
+    close LOG;
+}
+
+sub startListening() {
+    my $deviceip = $ENV{'DEVICEIP'};
+    my $worker_number = $ENV{'WORKER_NUMBER'};
+    # my $command = "telnet $deviceip";
+    my $command = "ssh root\@$deviceip";
+    Log("startListening: worker_number=$worker_number, command=$command");
+
+    my $exp = Expect->spawn($command) or die "Cannot telnet to remotehost: $deviceip";
+    my $timeout = 150;
+    my $launcher_status = 0;
+    my $process_id = "";
+    my $check_crash = false;
+    $exp->restart_timeout_upon_receive(1);
+    $Expect::Log_Stdout = 0;
+    $exp->expect($timeout,
+        [
+        '-re', '.*password:',
+        sub {
+            # Shift $exp by one to get the object that match the patten and remove it from Expect output
+            my $fh = shift;
+            $fh->send("root\n");
+            exp_continue;
+        }
+        ],
+        [
+        'login:',
+        sub {
+            my $fh = shift;
+            $fh->send("root\n");
+            exp_continue;
+        }
+        ],
+        [
+        'Password:',
+        sub {
+            my $fh = shift;
+            $fh->send("root\n");
+            exp_continue;
+        }
+        ],
+        [
+        '# ',
+        sub {
+            my $fh = shift;
+            if ($check_crash == true) {
+                my $output = $fh->before();
+                Log("Check crash: output=$output");
+                my @lines = split('\n', $output);
+                @lines = @lines[2..scalar(@lines) - 1];
+                my $crashed = false;
+                my $threads = 0;
+                foreach (@lines) {
+                    # proces_id is the first word in the third line
+                    # [Line 0]: Command
+                    # [Line 1]: "  pid STATE"
+                    # [Line 2+]: "<PID>   <STATUS>"
+                    my @words = split;
+                    if ($process_id eq (@words)[0]) {
+                        $threads++;
+                        if ((@words)[1] eq "STOPPED") {
+                            $crashed = true;
+                            last;
+                        }
+                    }
+                }
+                $crashed = true if $threads < 1;
+                $check_crash = false;
+                if ($launcher_status == PrepareToExit) {
+                    $launcher_status = Exiting;
+                    if ($crashed) {
+                        Log("Process exited gracefully");
+                        die("Gracefully");
+                    } else {
+                        # Launcher process didn't exit gracefully, need to slay
+                        Log("WARNING: process $process_id didn't exit gracefully, will try to slay it");
+                        $fh->send("slay -f $process_id\n");
+                    }
+                } elsif ($crashed) {
+                    Log("#CRASHED");
+                    print STDOUT "\n#CRASHED\n";
+                } else {
+                    Log("#OK");
+                    print STDOUT "\n#OK\n";
+                }
+            }
+
+            given ($launcher_status) {
+                when (NotRunning) {
+                    my $optionPixelTests = $pixelTests ? "--pixel-tests" : "";
+                    my $optionDebug = $debug ? "on -h" : "";
+                    my $appSandbox = "/accounts/1000/appdata/sys.browser.gYABgJYFHAzbeFMPCCpYWBtHAm0/data";
+                    my $cmd = "WORKER_NUMBER=$worker_number HOME=$appSandbox SANDBOX=$appSandbox $optionDebug $wrapper /base/usr/bin/drt-launcher $optionPixelTests &\n";
+                    $launcher_status = PrepareToRun;
+                    Log("\tSending command: $cmd\n");
+                    $fh->send($cmd);
+                }
+                when ([Executing, PrepareToRun]) {
+                    if ($launcher_status == PrepareToRun) {
+                        # All output we got before the matching '#', including the last command.
+                        my $output = $fh->before();
+                        my @words = split('\s+', $output);
+                        if (@words > 2) {
+                            $process_id = (@words)[-1];
+                        }
+                        Log("\tprocess_id=$process_id");
+                        $launcher_status = Executing;
+                    }
+                    while (<STDIN>) {
+                        chomp;
+                        my $test = $_;
+                        $test =~ s/^.*LayoutTests\///;
+                        $test =~ s/http:\/\/127\.0\.0\.1:8000/http\/tests/;
+                        if (($test eq '#CHECK_CRASH') && (! $check_crash)) {
+                            $fh->send("pidin -f aJ -p $process_id\n");
+                            $check_crash = true;
+                        } else {
+                            # Log("\tWill send: echo 'test_file::$test' > /pps/services/browser/drt/input$worker_number\n");
+                            $fh->send("echo 'test_file::$test' > /pps/services/browser/drt/input$worker_number\n");
+                            if ($test eq '#DONE') {
+                                Log("Exiting: Got #DONE");
+                                $launcher_status = PrepareToExit;
+                            }
+                        }
+                        last;
+                    }
+                }
+                when (PrepareToExit) {
+                    # Wait for launcher to exit gracefully
+                    sleep(2);
+                    Log("Checking if process exited gracefully");
+                    $fh->send("pidin -f aJ -p $process_id\n");
+                    $check_crash = true;
+                }
+                when (Exiting) { sleep(1); Log("Process slayed"); die "Slayed"; }
+            } # end of switch
+            exp_continue;
+        }
+        ],
+        [
+        timeout =>
+        sub {
+            my $fh=shift;
+            Log("Will die: Timed out.\n");
+            die("Timed out");
+        }
+        ]
+        );
+}
+

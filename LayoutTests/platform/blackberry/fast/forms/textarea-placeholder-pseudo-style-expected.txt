@@ -1,0 +1,39 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 784x584
+      RenderText {#text} at (0,0) size 337x17
+        text run at (0,0) width 337: "This tests that you can set the placeholder text color."
+      RenderBR {BR} at (336,13) size 1x0
+      RenderText {#text} at (210,49) size 4x17
+        text run at (210,49) width 4: " "
+      RenderText {#text} at (424,49) size 4x17
+        text run at (424,49) width 4: " "
+      RenderText {#text} at (638,49) size 4x17
+        text run at (638,49) width 4: " "
+      RenderText {#text} at (0,0) size 0x0
+layer at (10,28) size 206x40 clip at (11,29) size 204x38
+  RenderTextControl {TEXTAREA} at (2,20) size 206x40 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#640000]
+      RenderText {#text} at (0,0) size 40x18
+        text run at (0,0) width 40: "text"
+    RenderBlock {DIV} at (3,2) size 200x18
+layer at (224,28) size 206x40 clip at (225,29) size 204x38
+  RenderTextControl {TEXTAREA} at (216,20) size 206x40 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#640000]
+      RenderText {#text} at (0,0) size 130x18
+        text run at (0,0) width 130: "disabled text"
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#545454]
+layer at (438,28) size 206x40 clip at (439,29) size 204x38
+  RenderTextControl {TEXTAREA} at (430,20) size 206x40 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#A9A9A9]
+      RenderText {#text} at (0,0) size 70x18
+        text run at (0,0) width 70: "default"
+    RenderBlock {DIV} at (3,2) size 200x18
+layer at (10,77) size 206x40 clip at (11,78) size 204x38
+  RenderTextControl {TEXTAREA} at (2,69) size 206x40 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#A9A9A9]
+      RenderText {#text} at (0,0) size 160x18
+        text run at (0,0) width 160: "default disabled"
+    RenderBlock {DIV} at (3,2) size 200x18 [color=#545454]

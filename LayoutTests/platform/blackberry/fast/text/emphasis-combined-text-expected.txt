@@ -1,0 +1,35 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 744x584
+      RenderBlock {P} at (0,0) size 97x584
+        RenderInline {SPAN} at (0,0) size 53x201
+          RenderText {#text} at (43,0) size 53x86
+            text run at (43,0) width 86: "\x{6587}\x{5B57}"
+          RenderInline {SPAN} at (0,0) size 53x72
+            RenderCombineText {#text} at (43,86) size 53x72
+              text run at (43,86) width 72: "900"
+          RenderText {#text} at (43,158) size 53x43
+            text run at (43,158) width 43: "\x{5E74}"
+        RenderText {#text} at (0,0) size 0x0
+      RenderBlock {P} at (145,0) size 80x584
+        RenderInline {SPAN} at (0,0) size 53x201
+          RenderText {#text} at (26,0) size 53x86
+            text run at (26,0) width 86: "\x{6587}\x{5B57}"
+          RenderInline {SPAN} at (0,0) size 53x72
+            RenderCombineText {#text} at (26,86) size 53x72
+              text run at (26,86) width 72: "900"
+          RenderText {#text} at (26,158) size 53x43
+            text run at (26,158) width 43: "\x{5E74}"
+        RenderText {#text} at (0,0) size 0x0
+      RenderBlock {P} at (273,0) size 83x584
+        RenderInline {SPAN} at (0,0) size 53x201
+          RenderText {#text} at (29,0) size 53x86
+            text run at (29,0) width 86: "\x{6587}\x{5B57}"
+          RenderInline {SPAN} at (0,0) size 53x72
+            RenderCombineText {#text} at (29,86) size 53x72
+              text run at (29,86) width 72: "900"
+          RenderText {#text} at (29,158) size 53x43
+            text run at (29,158) width 43: "\x{5E74}"
+        RenderText {#text} at (0,0) size 0x0

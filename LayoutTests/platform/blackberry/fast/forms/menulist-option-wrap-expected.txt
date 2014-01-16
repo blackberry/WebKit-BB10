@@ -1,0 +1,43 @@
+layer at (0,0) size 800x600
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x600
+  RenderBlock {HTML} at (0,0) size 800x600
+    RenderBody {BODY} at (8,8) size 784x576
+      RenderBlock {P} at (0,0) size 784x18
+        RenderText {#text} at (0,0) size 55x17
+          text run at (0,0) width 55: "Test for "
+        RenderInline {I} at (0,0) size 582x17
+          RenderInline {A} at (0,0) size 306x17 [color=#0000EE]
+            RenderText {#text} at (54,0) size 306x17
+              text run at (54,0) width 306: "http://bugs.webkit.org/show_bug.cgi?id=11362"
+          RenderText {#text} at (359,0) size 277x17
+            text run at (359,0) width 5: " "
+            text run at (363,0) width 273: "Native popup with size=\"1\" wraps options"
+        RenderText {#text} at (635,0) size 5x17
+          text run at (635,0) width 5: "."
+      RenderBlock {P} at (0,34) size 784x25
+        RenderText {#text} at (0,5) size 37x17
+          text run at (0,5) width 37: "With "
+        RenderInline {TT} at (0,0) size 65x15
+          RenderText {#text} at (36,7) size 65x15
+            text run at (36,7) width 65: "size=\"1\""
+        RenderText {#text} at (100,5) size 9x17
+          text run at (100,5) width 9: ": "
+        RenderMenuList {SELECT} at (108,2) size 100x21 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+          RenderBlock (anonymous) at (1,1) size 98x19
+            RenderText at (0,0) size 212x19
+              text run at (0,0) width 212: "Very long option that does not fit"
+        RenderText {#text} at (0,0) size 0x0
+      RenderBlock {P} at (0,75) size 784x25
+        RenderText {#text} at (0,5) size 57x17
+          text run at (0,5) width 57: "Without "
+        RenderInline {TT} at (0,0) size 33x15
+          RenderText {#text} at (56,7) size 33x15
+            text run at (56,7) width 33: "size"
+        RenderText {#text} at (88,5) size 9x17
+          text run at (88,5) width 9: ": "
+        RenderMenuList {SELECT} at (97,2) size 100x21 [bgcolor=#FFFFFF] [border: (1px solid #000000)]
+          RenderBlock (anonymous) at (1,1) size 98x19
+            RenderText at (0,0) size 212x19
+              text run at (0,0) width 212: "Very long option that does not fit"
+        RenderText {#text} at (0,0) size 0x0

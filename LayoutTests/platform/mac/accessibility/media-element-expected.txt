@@ -1,0 +1,62 @@
+Dump <video> element controller accessibility object tree at 'canplaythrough' event.
+
++++++++++++++++++++++++++++++++++++
+
+State at 'canplaythrough' event:
+
+    description: AXDescription: video element controller
+    role: AXRole: AXToolbar
+
+
+        description: AXDescription: back 30 seconds
+        role: AXRole: AXButton
+
+
+        description: AXDescription: play
+        role: AXRole: AXButton
+
+
+        description: AXDescription: elapsed time
+        role: AXRole: AXGroup
+        subrole: AXSubrole: AXApplicationTimer
+
+
+            description: AXDescription: 
+            role: AXRole: AXGroup
+
+
+                description: AXDescription: 
+                role: AXRole: AXStaticText
+
+
+        description: AXDescription: 
+        role: AXRole: AXSlider
+        subrole: AXSubrole: AXTimeline
+
+
+            description: AXDescription: 
+            role: AXRole: AXValueIndicator
+
+
+        description: AXDescription: remaining time
+        role: AXRole: AXGroup
+        subrole: AXSubrole: AXApplicationTimer
+
+
+            description: AXDescription: 
+            role: AXRole: AXGroup
+
+
+                description: AXDescription: 
+                role: AXRole: AXStaticText
+
+
+        description: AXDescription: enter fullscreen
+        role: AXRole: AXButton
+
+
+        description: AXDescription: mute
+        role: AXRole: AXButton
+
+
+

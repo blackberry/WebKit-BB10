@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Copyright (C) 2014 BlackBerry Limited. All rights reserved.
+#
+
+function usage
+{
+    cat << EOF
+# Wrapper script for build-webkit with BlackBerry specific configs
+Usage: $0 <options>
+    -l      <path to WebKit-Platform STAGE_DIR>
+    -t      <arm|x86> (default: arm)
+
+EOF
+}
+
+ARCH_TYPE="arm"
+ARCH_CPU="a9"
+STAGE_DIR=""
+
+while getopts l:t:h opt 2> /dev/null; do
+    case $opt in
+    l) STAGE_DIR="$OPTARG" ;;
+    t) ARCH_TYPE="$OPTARG"; ARCH_CPU="" ;;
+    h) usage; exit 0 ;;
+    ?) usage >&2; exit 1 ;;
+    esac
+done
+
+if [ -z $STAGE_DIR ]; then
+    usage >&2
+    exit 1
+fi
+
+PUBLIC_BUILD=1 DEV_BUILD=0 STAGE_DIR=$STAGE_DIR BLACKBERRY_ARCH_TYPE=$ARCH_TYPE BLACKBERRY_ARCH_CPU=$ARCH_CPU ./Tools/Scripts/build-webkit --blackberry --release --makeargs='-j8 install'  --3d-canvas --3d-rendering --accelerated-2d-canvas --cmakearg=" -DSHOULD_INSTALL_JS_SHELL=2"

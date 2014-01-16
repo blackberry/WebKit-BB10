@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+    <head>
+        <style>
+            a {
+                font-size: 40px;
+            }
+            .hidden {
+                display: none;
+            }
+        </style>
+        <script src="../../../../../fast/js/resources/js-test-pre.js"></script>
+        <script type="application/javascript">
+            function runTest()
+            {
+                if (window.testRunner)
+                    testRunner.dumpAsText();
+
+                /*doFatFingers takes three values. x, y, targetType: 0 for clickable and 1 for text)*/
+                /*The link height is 46px. And Fatfinger Top margin usually larger than bottom. Touch in the middle of two links should give us top link because it has larger touch area. */
+                var fatfingerResult = eventSender.doFatFingers(165, 46, 0);
+                shouldBe(fatfingerResult, "anchorTop");
+                document.getElementById("anchorTop").classList.add('hidden');
+                document.getElementById("anchorBottom").classList.add('hidden');
+            }
+        </script>
+    </head>
+    <body style='margin:0px;' onload="runTest()">
+        <a id="anchorTop" href='#'>Test link1</a>
+        </br>
+        <a id="anchorBottom" href='#'>Test link2</a>
+    </body>
+</html>

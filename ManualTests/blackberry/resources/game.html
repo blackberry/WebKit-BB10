@@ -1,0 +1,22 @@
+<html>
+    <title>Sample game sounds</title>
+    <body>
+
+    <p>Background music and a foreground sound effect should be heard</p>
+
+    <audio loop> </audio>
+    <audio> </audio>
+    <script>
+        var backgroundMusic = document.getElementsByTagName('audio')[0];
+        var soundEffect = document.getElementsByTagName('audio')[1];
+        backgroundMusic.src = "./BlueEyes.mp3";
+        soundEffect.src = "./tap.mp3";
+        backgroundMusic.load();
+        soundEffect.load();
+        backgroundMusic.volume = 0.25;
+        backgroundMusic.play();
+        setInterval("soundEffect.play()", 1000);
+    </script>
+
+    </body>
+</html>

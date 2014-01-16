@@ -1,0 +1,11 @@
+layer at (0,0) size 800x860
+  RenderView at (0,0) size 800x600
+layer at (0,0) size 800x860
+  RenderBlock {HTML} at (0,0) size 800x860
+    RenderBody {BODY} at (8,8) size 784x576
+      RenderBlock {P} at (0,0) size 784x36
+        RenderText {#text} at (0,0) size 781x35
+          text run at (0,0) width 781: "The two squares below should not match each other. On the left an uncorrected image is tiled as a background, and on the"
+          text run at (0,18) width 491: "right the same image is tiled as a background, but it is corrected from sRGB."
+      RenderBlock (floating) {DIV} at (0,52) size 400x400
+      RenderBlock (floating) {DIV} at (0,452) size 400x400
